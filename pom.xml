@@ -32,15 +32,19 @@
 				<configuration>
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com/</uri>
-						<muleVersion>4.3.0</muleVersion>
-						<username>Sathyam1002</username>
-						<password>Sathyam@123</password>
-						<environment>Sandbox</environment>
-						<applicationName>mule4-azure1</applicationName>  
-						<businessGroup>self</businessGroup>
-						<workerType>Micro</workerType>
-						<workers>1</workers>
+						<server>${server}</server>
+						<muleVersion>${app.runtime}</muleVersion>
+						<applicationName>mule4-azure-${envSuffix}</applicationName>
+						<workers>${worker}</workers>
+						<workerType>${workerType}</workerType>
+						<environment>${environment}</environment>
 						<objectStoreV2>true</objectStoreV2>
+						<businessGroup>self</businessGroup>
+						<properties>
+							<mule.env>${envProperty}</mule.env>
+							<anypoint.platform.client_id>${client.id}</anypoint.platform.client_id>
+							<anypoint.platform.client_secret>${client.secret}</anypoint.platform.client_secret>
+						</properties>
 					</cloudHubDeployment>
 				</configuration>
 			</plugin>
