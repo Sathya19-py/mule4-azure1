@@ -34,12 +34,17 @@
 						<uri>https://anypoint.mulesoft.com/</uri>
 						<server>${server}</server>
 						<muleVersion>${app.runtime}</muleVersion>
-						<applicationName>${app.name}</applicationName>
+						<applicationName>mule4-azure-${envSuffix}</applicationName>
 						<workers>${worker}</workers>
 						<workerType>${workerType}</workerType>
 						<environment>${environment}</environment>
 						<objectStoreV2>true</objectStoreV2>
 						<businessGroup>self</businessGroup>
+						<properties>
+							<mule.env>${envProperty}</mule.env>
+							<anypoint.platform.client_id>${client.id}</anypoint.platform.client_id>
+							<anypoint.platform.client_secret>${client.secret}</anypoint.platform.client_secret>
+						</properties>
 					</cloudHubDeployment>
 				</configuration>
 			</plugin>

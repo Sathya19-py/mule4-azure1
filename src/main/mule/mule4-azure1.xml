@@ -5,11 +5,8 @@
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="064879d0-266b-47a6-81ec-8e1e214e14de" >
-		<http:listener-connection host="0.0.0.0" port="8082" />
-	</http:listener-config>
 	<flow name="mule4-azure1Flow" doc:id="219dfb06-85c8-468e-a040-44d69a9fa47f" >
-		<http:listener doc:name="Listener" doc:id="e5c85583-83db-4965-b100-2466740335a6" config-ref="HTTP_Listener_config" path="/demo/{name}"/>
+		<http:listener doc:name="Listener" doc:id="e5c85583-83db-4965-b100-2466740335a6" path="/demo/{name}" config-ref="HTTP_Listener_config"/>
 		<logger level="INFO" doc:name="Logger" doc:id="1c1a9a54-3332-40f7-a18d-5cee0eecb4c3" message="#[attributes.uriParams.'name']"/>
 		<ee:transform doc:name="Transform Message" doc:id="3ff66525-3341-4a65-86ff-ca9dc6c7eb8c" >
 			<ee:message >
@@ -21,6 +18,7 @@ output application/json
 }]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="261f30d6-fa44-4896-94b8-433e15a1636b" message="#[payload]"/>
 		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="e26571c7-a27a-45f5-a3bd-3f80d90b28ef" />
 	</flow>
 </mule>

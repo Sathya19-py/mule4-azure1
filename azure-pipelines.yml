@@ -1,3 +1,32 @@
+parameters:
+  - name : CloudHubEnv
+    displayName : CloudHub target Environment
+    type : string
+    default : DEV
+    values:
+    - DEV
+    - Sandbox
+    - Prod
+    
+  - name : MulePropEnv
+    displayName : Mule properties file
+    type : string
+    default : dev
+    values : 
+    - dev
+    - stage
+    - prod
+    - sandbox
+  - name: appnameSuffix
+    displayName: Suffix
+    type : string
+    default: dev
+    values:
+      - dev
+      - stage
+      - prod
+      - sandbox
+      
 trigger:
   batch: true
   branches:
@@ -49,4 +78,4 @@ steps:
     mavenVersionOption: 'Default'
     effectivePomSkip: true
     sonarQubeRunAnalysis: false
-    goals: 'clean install package deploy $(MAVEN_OPTS)  -DmuleDeploy -Dserver=$(server) -Denvironment=$(environment) -Dworker=$(worker) -DworkerType=$(workerType) -Dapp.runtime=$(app.runtime) -Dapp.name=$(app.name)'
+    goals: 'clean install package deploy $(MAVEN_OPTS)  -DmuleDeploy -Dserver=$(server) -Denvironment=${{parameters.CloudHubEnv}} -DenvProperty=${{parameters.MulePropEnv}} -DenvSuffix=${{parameters.appnameSuffix}} -Dworker=$(worker) -DworkerType=$(workerType) -Dapp.runtime=$(app.runtime)'

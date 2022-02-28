@@ -1,0 +1,6 @@
+http:
+  port : "8082"
+  
+client:
+  id: "66a85f8093c54b69a314174a97badb59"
+  secret : "0400f58820034eE089AF8F0822ed9E67"
